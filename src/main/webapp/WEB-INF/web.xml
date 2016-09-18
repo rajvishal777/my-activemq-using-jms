@@ -1,0 +1,41 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  	<display-name>Simple Active-MQ Using JMS</display-name>
+  
+  	<!-- Specifying path for spring context file --> 
+  	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/META-INF/spring/simple-activemq-using-jms.xml</param-value>
+	</context-param>
+	
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	
+	<!-- Exposing servelet for servlet container using the path mentioned in mapping  -->
+	<servlet>
+		<servlet-name>SimpleActiveMQ</servlet-name>
+		<!-- Using glassfish jersey as JAX-RS implementation for REST  -->
+		<servlet-class>org.glassfish.jersey.servlet.ServletContainer
+		</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>
+				raj.vishal.learning.commons.ConfigApplication
+			</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SimpleActiveMQ</servlet-name>
+		<url-pattern>/resources/*</url-pattern>
+	</servlet-mapping>
+		
+  
+</web-app>
